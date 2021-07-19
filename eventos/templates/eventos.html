@@ -1,0 +1,92 @@
+{% load static %}
+{% block content %}
+
+
+<!-- Eventos-->
+<div class="container">
+	<form method="GET" action=".">
+		<h2> Pesquisa de Eventos </h2>
+		<p>Preencha os campos seguintes para filtrar os resultados</p>
+		<div class="form-group row">
+			<label for="example-text-input" class="col-2 col-form-label">Evento</label>
+			<div class="col-5">
+				<input class="form-control" type="text" id="user-input">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="publishDateMin" class="col-2 col-form-label">Data minima do evento</label>
+			<div class="col-5">
+				<input type="date" class="form-control" id="publishDateMin" name="date_min_eventos">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="publishDateMax" class="col-2 col-form-label">Data maxima do evento</label>
+			<div class="col-5">
+				<input type="date" class="form-control" id="publishDateMax" name="date_max_eventos">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="publishDateMin" class="col-2 col-form-label">Data minima do projecto</label>
+			<div class="col-5">
+				<input type="date" class="form-control" id="publishDateMin" name="date_min_projetos">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="publishDateMax" class="col-2 col-form-label">Data maxima do projecto</label>
+			<div class="col-5">
+				<input type="date" class="form-control" id="publishDateMax" name="date_max_projetos">
+			</div>
+
+		</div>
+		<button type="submit" class="btn btn-primary">Search</button>
+	</form>
+</div>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+
+			<h3>Resultados da pesquisa </h3>
+		</div>
+		<div class="card card-body">
+
+			<table class="table">
+				<tr>
+					<th>Titulo do Evento</th>
+					<th>Descrição do Evento</th>
+					<th>Data do Evento</th>
+					<th>Artistas</th>
+					<th>Imagens</th>
+				</tr>
+				{% if eventos %}
+				{% for evento in eventos %}
+
+				<tr>
+					<td>
+						<ul><a href="{% url  'eventos' evento.id_evento evento.data_evento %}">{{ evento.titulo_evento }}</a></ul>
+					</td>
+					<td>{{evento.descricao_evento}}</td>
+					<td>{{evento.data_evento}}</td>
+					<td>{{evento.artistas}}</td>
+					<td>{{evento.imagens_evento}}</td>
+					
+				</tr>
+
+				{% endfor %}
+				{% endif %}
+				<tr>
+					<th>Titulo do Projeto</th>
+					<th>Descrição do Projeto</th>
+					<th>Data do Projeto</th>
+				</tr>
+				{% if projetos %}
+				{% for i in projetos %}
+				<tr>
+					<td>{{i.titulo_projeto}}</td>
+				</tr>
+				{% endfor %}
+				{% endif %}
+		</div>
+
+
+		{% endblock content %}
