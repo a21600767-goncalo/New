@@ -36,15 +36,10 @@ def canvas():
     
     print(canvas_list)
 
-    access_token ="EAAEZAZAyZC4tuYBAF7kvNXwhYGraZB79EfRHsIYfDwxwO7UtexUu9y1C5pvlOLJjxasK0oTVYJBV0P9uZAPxt1fMZAHh226mwCM0zvxpNkrwagyPrbzMLfTL5TcHZC34sQ5cnaf5jhNZB2Rqfny1f349cbH1P08yxCwRBuIfGATZB5mJHYH4zVSPA1UuFeJqwCZCJEZBsQ2iqWhFwZDZD";
+    access_token ="EAAEZAZAyZC4tuYBAPRZAne4fsz8SS7v8ZCHzFiZBA5yurcwQPGxLvXyZA4iWjsDe80GE4mZBsWO9Eu2usPlQo89yUXkp1zhQokRpdvkUL28L0MdJhT1YaZCs9eZApU7Pktk6aII4oei4yNZAFk29W2oeFUnM3j2BU4KS0SbTyLpZC6LFaaXG3icZA80f2";
 
     facebook = fb.GraphAPI(access_token)
 
     facebook.put_photo(open(string, 'rb'))
 
 
-schedule.every().day.at("20:30").do(canvas)
-
-while True:
-    schedule.run_pending()
-    
