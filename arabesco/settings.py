@@ -85,6 +85,8 @@ MIDDLEWARE = [
     
 ]
 
+#teste commit
+
 ROOT_URLCONF = 'arabesco.urls'
 
 TEMPLATES = [
