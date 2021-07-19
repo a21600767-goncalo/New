@@ -116,7 +116,7 @@ WSGI_APPLICATION = 'arabesco.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 #
 DATABASES = {
-    #'default': env.dj_db_url("DATABASE_URL") 
+    'default': env.dj_db_url("DATABASE_URL"), 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',                #---------> DESCOMENTAR PARA DAR DEPLOY <------------
         'NAME': 'd2s1b9lknpgc4o',
         'HOST': 'ec2-35-170-85-206.compute-1.amazonaws.com',
