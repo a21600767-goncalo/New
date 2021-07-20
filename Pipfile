@@ -48,6 +48,7 @@ xhtml2pdf = "*"
 xvfbwrapper = "*"
 django-yarn = "*"
 django-yarnpkg = "*"
+requests-html = "*"
 
 [dev-packages]
 

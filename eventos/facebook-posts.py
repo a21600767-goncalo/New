@@ -1,45 +1,39 @@
 import os
 import re
 import requests
-import config
 import facebook as fb
 import glob
 from datetime import datetime, timedelta, time
 import schedule
 
 
-def canvas():
+def post_canvas():
 
     time_today = datetime.now()
 
-    time_x = time_today + timedelta(days=+10) 
+    time_x = time_today + timedelta(days=+9) 
 
     time2 = time_x.strftime("%Y-%m-%d")
 
     canvas_list = glob.glob('C:/Users/gonca/Downloads/*evento-canvas*')                  
-
-    item = [[canvas] for canvas in canvas_list if time2 in canvas]
-
-    string = ''.join(item[0])
     
-    print(string)
-
-    name = string.split('\\')
-
-    print(name[1])
-
-    x = name[1]
-
-    print(item)
-    item.pop()
+    canvas= ""
+    item =""
+    for canvas in canvas_list:
+        if time2 in canvas:
+            item = canvas
+   
+            
+    
+    string = ''.join(item)
 
     
-    print(canvas_list)
+    
 
-    access_token ="EAAEZAZAyZC4tuYBAPRZAne4fsz8SS7v8ZCHzFiZBA5yurcwQPGxLvXyZA4iWjsDe80GE4mZBsWO9Eu2usPlQo89yUXkp1zhQokRpdvkUL28L0MdJhT1YaZCs9eZApU7Pktk6aII4oei4yNZAFk29W2oeFUnM3j2BU4KS0SbTyLpZC6LFaaXG3icZA80f2";
+    access_token ="EAAEZAZAyZC4tuYBAAocZAbS2Vh5yWR5Oy6rkBXfrZAU5ffZBajum2WzVocQ5QV9Hucjfc146GaK3fm3hO8Hy52ITx0svfqIMTqdkWhfg2z7KohOSWBknpSoHyn2KdvXkItmA9vKjKBW48Xs2XKZAn6a9sfthQ3jR3V32ETthH19IjWpDTRWL4wo";
 
     facebook = fb.GraphAPI(access_token)
 
     facebook.put_photo(open(string, 'rb'))
-
-
+    
+post_canvas()
