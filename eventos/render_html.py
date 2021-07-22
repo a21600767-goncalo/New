@@ -1,5 +1,7 @@
 
-{% load static %}
+
+text = '''
+    {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <html style="font-size: 16px;">
@@ -7,6 +9,7 @@
 
 
 <body>
+<button id="button">Download</button>
 </body>
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -148,6 +151,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 </html>
 </html>
+<button id="button" onclick="saveCanvas()" >Download</button>
 <script>
 
 
@@ -190,7 +194,14 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
           window.open(uri);
         }
       }
-
-      saveCanvas();
-      
 </script>
+
+
+    '''
+
+
+file = open("123.html","w")
+
+file.write(text)
+
+file.close()

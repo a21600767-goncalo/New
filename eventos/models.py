@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 # Create your models here.
@@ -50,6 +51,7 @@ class Evento2(models.Model):
     def agrega(self):
         return ' '.join(imagens.images for Imagens in self.images_set.all())
 
+        
     
 class Imagens(models.Model):
     evento = models.ForeignKey(Evento2, on_delete=models.CASCADE, null=True)

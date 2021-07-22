@@ -5,13 +5,16 @@ import facebook as fb
 import glob
 from datetime import datetime, timedelta, time
 import schedule
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 
 def post_canvas():
 
     time_today = datetime.now()
 
-    time_x = time_today + timedelta(days=+9) 
+    time_x = time_today + timedelta(days=+2) 
 
     time2 = time_x.strftime("%Y-%m-%d")
 
@@ -22,12 +25,26 @@ def post_canvas():
     for canvas in canvas_list:
         if time2 in canvas:
             item = canvas
-   
+            break
+        
             
     
     string = ''.join(item)
 
+    print(string)
+
+    name = string.split('\\')
+
+    print(name[1])
+
+    x = name[1]
+
+    print(item)
     
+
+    
+
+
     
 
     access_token ="EAAEZAZAyZC4tuYBAAocZAbS2Vh5yWR5Oy6rkBXfrZAU5ffZBajum2WzVocQ5QV9Hucjfc146GaK3fm3hO8Hy52ITx0svfqIMTqdkWhfg2z7KohOSWBknpSoHyn2KdvXkItmA9vKjKBW48Xs2XKZAn6a9sfthQ3jR3V32ETthH19IjWpDTRWL4wo";
@@ -37,3 +54,5 @@ def post_canvas():
     facebook.put_photo(open(string, 'rb'))
     
 post_canvas()
+
+

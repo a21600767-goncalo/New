@@ -1,5 +1,5 @@
 
-{% load static %}
+    {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <html style="font-size: 16px;">
@@ -7,6 +7,7 @@
 
 
 <body>
+<button id="button">Download</button>
 </body>
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,9 +24,9 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>PÃ¡gina Inicial</title>
+    <title>Página Inicial</title>
     <link rel="stylesheet"  type=text/css href="{% static '/css/nicepage_evento.css' %}" media="screen">
-    <link rel="stylesheet"  type=text/css href="{% static '/css/PÃ¡gina_evento.css' %}" media="screen">
+    <link rel="stylesheet"  type=text/css href="{% static '/css/Página_evento.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static '/js/jquery_evento.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static '/js/nicepage_evento.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
@@ -39,13 +40,13 @@
 		"url": "Pagina_evento.html",
 		"logo": "images/default-logo.png"
 }</script>
-    <meta property="og:title" content="PÃ¡gina Inicial">
+    <meta property="og:title" content="Página Inicial">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#478ac9">
     <link rel="canonical" href="Pagina_evento.html">
     <meta property="og:url" content="Pagina_evento.html">
   </head>
-  <body data-home-page="PÃ¡gina_evento.html" data-home-page-title="PÃ¡gina evento" class="u-body"><header class="u-clearfix u-header u-header" id="main"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+  <body data-home-page="Página_evento.html" data-home-page-title="Página evento" class="u-body"><header class="u-clearfix u-header u-header" id="main"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1">
           <img src="{% static 'images/default-logo.png' %}" class="u-logo-image u-logo-image-1">
         </a>
@@ -59,11 +60,11 @@
             </a>
           </div>
           <div class="u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="PÃ¡gina-Inicial.html" style="padding: 10px 20px;">PÃ¡gina Inicial</a>
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Página-Inicial.html" style="padding: 10px 20px;">Página Inicial</a>
        {% for i in eventos %}     
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Sobre.html" style="padding: 10px 20px;">{{i.descricao_evento}}</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Contact.html" style="padding: 10px 20px;">{{i.data_evento}}</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="PÃ¡gina-1.html" style="padding: 10px 20px;">PÃ¡gina 1</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Página-1.html" style="padding: 10px 20px;">Página 1</a>
 </li></ul>
         {% endfor %}
           </div>
@@ -71,12 +72,12 @@
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="PÃ¡gina-Inicial.html">PÃ¡gina Inicial</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Página-Inicial.html">Página Inicial</a>
 
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Sobre.html">Sobre</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">{{eventos.titulo_evento}}</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="PÃ¡gina-1.html">{{eventos.titulo_evento}}</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="PÃ¡gina-1.html">Galeria do evento</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Página-1.html">{{eventos.titulo_evento}}</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Página-1.html">Galeria do evento</a>
 </li></ul>
               </div>
             </div>
@@ -148,6 +149,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 </html>
 </html>
+<button id="button" onclick="saveCanvas()" >Download</button>
 <script>
 
 
@@ -190,7 +192,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
           window.open(uri);
         }
       }
-
-      saveCanvas();
-      
 </script>
+
+
+    
