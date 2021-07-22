@@ -51,7 +51,7 @@ def post_canvas():
 
     facebook = fb.GraphAPI(access_token)
 
-    facebook.put_photo(open(string, 'rb'))
+    facebook.put_object('me', 'feed', message="Just posting something on my wall")
     
 post_canvas()
 
