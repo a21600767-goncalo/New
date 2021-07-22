@@ -10,8 +10,9 @@ import cloudinary.uploader
 import cloudinary.api
 
 
-def post_canvas():
 
+
+'''
     time_today = datetime.now()
 
     time_x = time_today + timedelta(days=+2) 
@@ -41,18 +42,17 @@ def post_canvas():
 
     print(item)
     
+'''   
+
 
     
 
+access_token ="EAAEZAZAyZC4tuYBAAocZAbS2Vh5yWR5Oy6rkBXfrZAU5ffZBajum2WzVocQ5QV9Hucjfc146GaK3fm3hO8Hy52ITx0svfqIMTqdkWhfg2z7KohOSWBknpSoHyn2KdvXkItmA9vKjKBW48Xs2XKZAn6a9sfthQ3jR3V32ETthH19IjWpDTRWL4wo";
 
+facebook = fb.GraphAPI(access_token)
+
+facebook.put_object('me', 'feed', message="Just posting something on my wall")
     
 
-    access_token ="EAAEZAZAyZC4tuYBAAocZAbS2Vh5yWR5Oy6rkBXfrZAU5ffZBajum2WzVocQ5QV9Hucjfc146GaK3fm3hO8Hy52ITx0svfqIMTqdkWhfg2z7KohOSWBknpSoHyn2KdvXkItmA9vKjKBW48Xs2XKZAn6a9sfthQ3jR3V32ETthH19IjWpDTRWL4wo";
-
-    facebook = fb.GraphAPI(access_token)
-
-    facebook.put_object('me', 'feed', message="Just posting something on my wall")
-    
-post_canvas()
 
 
