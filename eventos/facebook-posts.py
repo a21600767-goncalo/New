@@ -8,13 +8,21 @@ import schedule
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import json
 
 
 def post_canvas():
 
+    cloudinary.config( 
+    cloud_name = "da7qp20ja", 
+    api_key = "835922641349356", 
+    api_secret = "qt3MG0N2omjL_7kS_khMi7k5_1c" 
+)
+
+
     time_today = datetime.now()
 
-    time_x = time_today + timedelta(days=+2) 
+    time_x = time_today + timedelta(days=+3) 
 
     time2 = time_x.strftime("%Y-%m-%d")
 
@@ -39,20 +47,11 @@ def post_canvas():
 
     x = name[1]
 
-    print(item)
+    print(x)
     
-
+    cloudinary.uploader.upload(string, public_id=x, folder="Canvas")
+        
     
-
-
-    
-
-    access_token ="EAAEZAZAyZC4tuYBAAocZAbS2Vh5yWR5Oy6rkBXfrZAU5ffZBajum2WzVocQ5QV9Hucjfc146GaK3fm3hO8Hy52ITx0svfqIMTqdkWhfg2z7KohOSWBknpSoHyn2KdvXkItmA9vKjKBW48Xs2XKZAn6a9sfthQ3jR3V32ETthH19IjWpDTRWL4wo";
-
-    facebook = fb.GraphAPI(access_token)
-
-    facebook.put_photo(open(string, 'rb'))    
-
 post_canvas()
 
 

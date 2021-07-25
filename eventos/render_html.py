@@ -1,4 +1,5 @@
 
+'http://127.0.0.1:8000/eventos/1/2021-07-29/'
 
 text = '''
     {% load static %}
