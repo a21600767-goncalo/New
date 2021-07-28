@@ -18,7 +18,7 @@ def post_canvas():
     api_key = "835922641349356", 
     api_secret = "qt3MG0N2omjL_7kS_khMi7k5_1c" 
 )
-
+    w ='evento-canvas'
 
     time_today = datetime.now()
 
@@ -45,12 +45,20 @@ def post_canvas():
 
     print(name[1])
 
-    x = name[1]
+    tag = name[1]
 
-    print(x)
+    print(canvas_list)
     
-    cloudinary.uploader.upload(string, public_id=x, folder="Canvas")
-        
+    canvas_list2 =[[element] for element in canvas_list]
+    
+    
+    
+    
+    print(string)
+    
+    
+    cloudinary.uploader.upload(string, tag= w, folder="Canvas")
+    
     
 post_canvas()
 

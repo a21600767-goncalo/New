@@ -24,7 +24,7 @@ def post():
 
         time_today = datetime.now()
 
-        time_x = time_today + timedelta(days=+3) 
+        time_x = time_today + timedelta(days=+1) 
 
         time2 = time_x.strftime("%Y-%m-%d")
 
@@ -56,7 +56,7 @@ def post():
     
 
 
-        print(urls_list)
+        print(urls)
 
         url=""
         link =""
