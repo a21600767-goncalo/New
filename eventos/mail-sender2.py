@@ -25,7 +25,7 @@ from email.message import EmailMessage
 import imghdr
 from PIL import Image
 import shutil
-
+from email.mime.text import MIMEText
 
 def mailsender():
 
@@ -88,9 +88,11 @@ def mailsender():
     recievers = []
     for user in User.objects.all():
         recievers.append(user.email)
-        print(recievers)
+        str1=" "
+        string_receivers = str1.join(recievers)
+        print(string_receivers)
 
-
+    '''
     response = requests.get(link, stream=True)
 
     with open('my_image.png', 'wb') as file:
@@ -98,22 +100,37 @@ def mailsender():
     del response
 
     img = Image.open('my_image.png')
-    
-    msg = EmailMessage()
+    '''
+
+    email_body= """<pre> 
+        Congratulations! We've successfully created account.
+        Go to the page: <a href={link}>click here</a>
+        Thanks,
+        XYZ Team.
+        </pre>""".format(link= link)
+
+
+    msg =MIMEText(email_body, 'html')
     msg['Subject']= 'xpto'
     msg['From']= email_user
-    msg['To']=recievers
-    msg.set_content('Este é o nosso proximo evento!!')
+    msg['To']=", ".join(recievers)
 
+    '''
+    msg.add_alternative("""\<pre> 
+        Congratulations! We've successfully created account.
+        Go to the page: <a href="{{link}}">click here</a>
+        Thanks,
+        XYZ Team.
+        </pre>""", subtype = 'html')
+    '''
+    '''
     with open('my_image.png', 'rb') as fp:
         img_data = fp.read()
         file_type= imghdr.what(fp.name)
         file_name=fp.name
         msg.add_attachment(img_data, maintype='image',
             subtype=file_type, filename=file_name)
-
-
-    
+    '''    
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 
         smtp.login(email_user, email_password)
