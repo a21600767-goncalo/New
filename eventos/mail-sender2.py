@@ -26,6 +26,8 @@ import imghdr
 from PIL import Image
 import shutil
 from email.mime.text import MIMEText
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 def mailsender():
 
@@ -115,26 +117,26 @@ def mailsender():
     msg['From']= email_user
     msg['To']=", ".join(recievers)
 
-    '''
-    msg.add_alternative("""\<pre> 
+    
+    message = Mail(
+    from_email='goncalo_slb_matos@hotmail.com',
+    to_emails='goncalomatos007@gmail.com',
+    subject='Sending with Twilio SendGrid is Fun',
+    html_content="""<pre> 
         Congratulations! We've successfully created account.
-        Go to the page: <a href="{{link}}">click here</a>
+        Go to the page: <a href={link}>click here</a>
         Thanks,
         XYZ Team.
-        </pre>""", subtype = 'html')
-    '''
-    '''
-    with open('my_image.png', 'rb') as fp:
-        img_data = fp.read()
-        file_type= imghdr.what(fp.name)
-        file_name=fp.name
-        msg.add_attachment(img_data, maintype='image',
-            subtype=file_type, filename=file_name)
-    '''    
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        </pre>""".format(link= link))
+    try:
+        sg = SendGridAPIClient('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')
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e)
 
-        smtp.login(email_user, email_password)
-        
-        smtp.send_message(msg)
+    
     
 mailsender()
