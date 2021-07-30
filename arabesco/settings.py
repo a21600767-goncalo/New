@@ -65,7 +65,6 @@ INSTALLED_APPS = [
     'django_heroku',
     'easy_pdf',
     'django_yarnpkg',
-    'sendgrid',
     
  
 ]
@@ -131,7 +130,7 @@ DATABASES = {
 }
 
 
-#DATABASES['default'] = dj_database_url.config()     #   DESCOMENTAR PARA DAR DEPLOY
+DATABASES['default'] = dj_database_url.config()     #   DESCOMENTAR PARA DAR DEPLOY
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
