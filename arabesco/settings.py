@@ -120,14 +120,14 @@ WSGI_APPLICATION = 'arabesco.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 #
 DATABASES = {
-    'default': env.dj_db_url("DATABASE_URL"), 
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',                #---------> DESCOMENTAR PARA DAR DEPLOY <------------
-        #'NAME': 'd2s1b9lknpgc4o',
-        #'HOST': 'ec2-35-170-85-206.compute-1.amazonaws.com',
-        #'PORT': '5432',                    
-        #'USER': 'dlymrlqxncaxht',
-        #'PASSWORD': '203087df6d4afab5b64f47f3167a43768565ec9f33e2624b723dd4afaf539af1',                             
-    
+    'default':{ #env.dj_db_url("DATABASE_URL"), 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',                #---------> DESCOMENTAR PARA DAR DEPLOY <------------
+        'NAME': 'd2s1b9lknpgc4o',
+        'HOST': 'ec2-35-170-85-206.compute-1.amazonaws.com',
+        'PORT': '5432',                    
+        'USER': 'dlymrlqxncaxht',
+        'PASSWORD': '203087df6d4afab5b64f47f3167a43768565ec9f33e2624b723dd4afaf539af1',                             
+    }
 }
 
 
@@ -172,10 +172,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",  'eventos/templates/static', ]
 
-#STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage',    #  DESCOMENTAR PARA DAR DEPLOY
+STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage',    #  DESCOMENTAR PARA DAR DEPLOY
 
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # DESCOMENTAR PARA DAR DEPLOY
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # DESCOMENTAR PARA DAR DEPLOY
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -189,7 +189,7 @@ NODE_MODULES_ROOT = os.path.join(BASE_DIR, 'node_modules')
 
 
 
-#django_heroku.settings(locals())       #DESCOMENTAR PARA DAR DEPLOY
+django_heroku.settings(locals())       #DESCOMENTAR PARA DAR DEPLOY
 
 
 cloudinary.config( 
