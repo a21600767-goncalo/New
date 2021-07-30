@@ -119,18 +119,18 @@ WSGI_APPLICATION = 'arabesco.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 #
 DATABASES = {
-    'default':{ #env.dj_db_url("DATABASE_URL"), 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',                #---------> DESCOMENTAR PARA DAR DEPLOY <------------
-        'NAME': 'd2s1b9lknpgc4o',
-        'HOST': 'ec2-35-170-85-206.compute-1.amazonaws.com',
-        'PORT': '5432',                    
-        'USER': 'dlymrlqxncaxht',
-        'PASSWORD': '203087df6d4afab5b64f47f3167a43768565ec9f33e2624b723dd4afaf539af1',                             
-    }
+    'default': env.dj_db_url("DATABASE_URL"), 
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',                #---------> DESCOMENTAR PARA DAR DEPLOY <------------
+        #'NAME': 'd2s1b9lknpgc4o',
+        #'HOST': 'ec2-35-170-85-206.compute-1.amazonaws.com',
+        #'PORT': '5432',                    
+        #'USER': 'dlymrlqxncaxht',
+        #'PASSWORD': '203087df6d4afab5b64f47f3167a43768565ec9f33e2624b723dd4afaf539af1',                             
+    
 }
 
 
-DATABASES['default'] = dj_database_url.config()     #   DESCOMENTAR PARA DAR DEPLOY
+#DATABASES['default'] = dj_database_url.config()     #   DESCOMENTAR PARA DAR DEPLOY
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -171,10 +171,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",  'eventos/templates/static', ]
 
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage',    #  DESCOMENTAR PARA DAR DEPLOY
+#STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage',    #  DESCOMENTAR PARA DAR DEPLOY
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') # DESCOMENTAR PARA DAR DEPLOY
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # DESCOMENTAR PARA DAR DEPLOY
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -195,7 +195,7 @@ EMAIL_HOST_PASSWORD = 'SUpertramp007'
 EMAIL_PORT = 465
 
 
-django_heroku.settings(locals())       #DESCOMENTAR PARA DAR DEPLOY
+#django_heroku.settings(locals())       #DESCOMENTAR PARA DAR DEPLOY
 
 
 cloudinary.config( 
@@ -204,3 +204,10 @@ cloudinary.config(
   api_secret = "qt3MG0N2omjL_7kS_khMi7k5_1c" 
 )
 
+SENDGRID_API_KEY = os.getenv('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')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

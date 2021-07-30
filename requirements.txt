@@ -84,6 +84,7 @@ pytest-xvfb==2.0.0
 python-bidi==0.4.2
 python-decouple==3.4
 python-dotenv==0.17.1
+python-http-client==3.3.2
 pytz==2021.1
 PyVirtualDisplay==2.2
 queuelib==1.6.1
@@ -92,10 +93,12 @@ requests==2.26.0
 requests-html==0.10.0
 schedule==1.1.0
 Scrapy==2.5.0
+sendgrid==6.7.1
 service-identity==21.1.0
 six==1.16.0
 soupsieve==2.2.1
 sqlparse==0.4.1
+starkbank-ecdsa==1.1.1
 tinycss2==1.1.0
 toml==0.10.2
 tqdm==4.61.2
