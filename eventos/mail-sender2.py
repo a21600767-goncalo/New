@@ -27,6 +27,7 @@ from PIL import Image
 import shutil
 from email.mime.text import MIMEText
 from django.core.mail import send_mail
+from django.template import loader
 
 def mailsender():
 
@@ -43,7 +44,7 @@ def mailsender():
 
     time_today = datetime.now()
 
-    time_x = time_today + timedelta(days=+1) 
+    time_x = time_today + timedelta(days=0) 
 
     time2 = time_x.strftime("%Y-%m-%d")
 
@@ -136,6 +137,18 @@ def mailsender():
     except Exception as e:
         print(e)
     '''
-    send_mail('Example Subject', 'Example message', 'goncalo_slb_matos@hotmail.com', ['goncalomatos007@gmail.com'])
+    subject = 'Thank you from ******'
+    message = 'text version of HTML message'
+    from_email = 'goncalo_slb_matos@hotmail.com'
+    to_list = recievers
+    html_message= """<pre> 
+        Congratulations! We've successfully created account.
+        Go to the page: <a href={link}>click here</a>
+        Thanks,
+        XYZ Team.
+        </pre>""".format(link= link)
+
+
+    send_mail(subject,message,from_email,to_list,fail_silently=True,html_message=html_message)
     
 mailsender()
