@@ -26,8 +26,7 @@ import imghdr
 from PIL import Image
 import shutil
 from email.mime.text import MIMEText
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from django.core.mail import send_mail
 
 def mailsender():
 
@@ -117,7 +116,7 @@ def mailsender():
     msg['From']= email_user
     msg['To']=", ".join(recievers)
 
-    
+    '''
     message = Mail(
     from_email='goncalo_slb_matos@hotmail.com',
     to_emails='goncalomatos007@gmail.com',
@@ -129,14 +128,14 @@ def mailsender():
         XYZ Team.
         </pre>""".format(link= link))
     try:
-        sg = SendGridAPIClient('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')
+        sg = sendgrid.SendGridAPIClient(os.environ.get('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')) 
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
         print(response.headers)
     except Exception as e:
         print(e)
-
-    
+    '''
+    send_mail('Example Subject', 'Example message', 'goncalo_slb_matos@hotmail.com', ['goncalomatos007@gmail.com'])
     
 mailsender()
