@@ -77,6 +77,7 @@ EasyProcess = "==0.3"
 MarkupSafe = "==2.0.1"
 PyPDF2 = "==1.26.0"
 PyVirtualDisplay = "==2.2"
+instabot = "*"
 
 [dev-packages]
 

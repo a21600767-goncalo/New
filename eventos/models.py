@@ -7,8 +7,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your models here.
 
-
-
+class agendamento(models.Model):
+    promocao= models.DateTimeField(default=datetime.now, blank=True)
+    def __str__(self):
+        return f"{self.promocao}"
 
 class Videos(models.Model):
     id_video=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -40,9 +42,10 @@ class Evento2(models.Model):
     data_evento = models.DateField(default=datetime.now, blank=True)
     projeto =models.ForeignKey(Projeto, on_delete=models.CASCADE, null=True)
     video_evento=models.ManyToManyField(Videos, blank=True)
+    data_promocao = models.ForeignKey(agendamento, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.titulo_evento}"
+        return f"{self.titulo_evento} {self.data_promocao}"
 
     def get_absolute_url(self):
         return reverse('eventos', kwargs={'pk': self.id_evento, 'pk2': self.data_evento})
@@ -59,5 +62,3 @@ class Imagens(models.Model):
     
 
     
-
-

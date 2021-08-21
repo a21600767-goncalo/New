@@ -13,12 +13,13 @@ import json
 
 def post_canvas():
 
+
     cloudinary.config( 
     cloud_name = "da7qp20ja", 
     api_key = "835922641349356", 
     api_secret = "qt3MG0N2omjL_7kS_khMi7k5_1c" 
 )
-    w ='evento-canvas'
+    tag ='evento-canvas'
 
     time_today = datetime.now()
 
@@ -57,7 +58,7 @@ def post_canvas():
     print(string)
     
     
-    cloudinary.uploader.upload(string, tag= w, folder="Canvas")
+    cloudinary.uploader.upload(string, tag= tag, folder="Canvas")
     
     
 post_canvas()

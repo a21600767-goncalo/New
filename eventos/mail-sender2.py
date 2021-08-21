@@ -31,47 +31,43 @@ from django.template import loader
 
 def mailsender():
 
-    email_user = 'goncalomatos007@gmail.com'
+    email_user = 'goncalomatos007@gmail.com'                            #email credentials 
     email_password = 'SUpertramp007'
 
     cloudinary.config( 
-        cloud_name = "da7qp20ja", 
+        cloud_name = "da7qp20ja",                                       #cloudinary config
         api_key = "835922641349356", 
         api_secret = "qt3MG0N2omjL_7kS_khMi7k5_1c"
         )
 
-    tag ='evento-canvas'
+    tag ='evento-canvas'                                                #tag used to search through cloud's directories 
 
-    time_today = datetime.now()
+    time_today = datetime.now()                                         #actual time
 
-    time_x = time_today + timedelta(days=0) 
+    time_x = time_today + timedelta(days=-16)                           #time(in days) we want to search through the list of canvas in cloud 
 
-    time2 = time_x.strftime("%Y-%m-%d")
+    time2 = time_x.strftime("%Y-%m-%d")                                 #we had to format time to "YYYY-MM-DD" in order to match canvas names
 
     result = cloudinary.Search()\
     .expression(tag)\
     .execute()
-
-        
-    cloud = 'http://res.cloudinary.com/da7qp20ja/image/upload/'
+                                                                        #we used an api from cloudinary that is able to search through the cloud's directories, it returns an JSON response 
     
-    cloud_tag = cloud + tag
-    print(result)
-    print(requests.__version__)
-
-    z= cloudinary.api.resources_by_tag("url")
-        
-        
-    j = json.dumps(result)
-    w = ''.join(j)
-    stripped_string = w.replace('"', '')
-    q = list(j.split(' '))
-        
-    urls =[[a] for a in q if cloud in a]
+    cloud = 'http://res.cloudinary.com/da7qp20ja/image/upload/'
+            
+    json_response = json.dumps(result)
+    json_response_to_string = ''.join(json_response)
+    stripped_string = json_response_to_string.replace('"', '')
+    json_response_to_list = list(json_response.split(' '))
+                                                                
+                                                                        #here we converted json response to string and then to a list of string elements 
+   
+    urls =[[a] for a in json_response_to_list if cloud in a]
     urls2 = [''.join(ele) for ele in urls]
     urls3 = ''.join(urls2)
-    urls4 = urls3.replace('"', '')
+    urls4 = urls3.replace('"', '')                                      # here we search through the list of string elements from json response, if there is an item that matches the cloud url we save it into a list
     urls_list = list(urls4.split(","))
+
 
     
 
@@ -80,7 +76,7 @@ def mailsender():
 
     url=""
     link =""
-    for url in urls_list:
+    for url in urls_list:                                               #here we make a match between urls and time that we set earlier, and after that we have the canvas url
         if time2 in url:
             link = url
                 
@@ -89,27 +85,14 @@ def mailsender():
 
     recievers = []
     for user in User.objects.all():
-        recievers.append(user.email)
+        recievers.append(user.email)                                    #here we get all emails saved on database and copy them to a string 
         str1=" "
         string_receivers = str1.join(recievers)
         print(string_receivers)
 
-    '''
-    response = requests.get(link, stream=True)
+    
 
-    with open('my_image.png', 'wb') as file:
-        shutil.copyfileobj(response.raw, file)
-    del response
-
-    img = Image.open('my_image.png')
-    '''
-
-    email_body= """<pre> 
-        Congratulations! We've successfully created account.
-        Go to the page: <a href={link}>click here</a>
-        Thanks,
-        XYZ Team.
-        </pre>""".format(link= link)
+        #here we have an email body(html with string format) with a link to canvas
 
 
     msg =MIMEText(email_body, 'html')
@@ -117,26 +100,6 @@ def mailsender():
     msg['From']= email_user
     msg['To']=", ".join(recievers)
 
-    '''
-    message = Mail(
-    from_email='goncalo_slb_matos@hotmail.com',
-    to_emails='goncalomatos007@gmail.com',
-    subject='Sending with Twilio SendGrid is Fun',
-    html_content="""<pre> 
-        Congratulations! We've successfully created account.
-        Go to the page: <a href={link}>click here</a>
-        Thanks,
-        XYZ Team.
-        </pre>""".format(link= link))
-    try:
-        sg = sendgrid.SendGridAPIClient(os.environ.get('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')) 
-        response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
-    except Exception as e:
-        print(e)
-    '''
     subject = 'Thank you from ******'
     message = 'text version of HTML message'
     from_email = 'goncalo_slb_matos@hotmail.com'
@@ -145,10 +108,10 @@ def mailsender():
         Congratulations! We've successfully created account.
         Go to the page: <a href={link}>click here</a>
         Thanks,
-        XYZ Team.
+        XYZ Team.                                           #here we have an email body(html with string format) with a link to canvas
         </pre>""".format(link= link)
 
 
-    send_mail(subject,message,from_email,to_list,fail_silently=True,html_message=html_message)
+    send_mail(subject,message,from_email,to_list,fail_silently=True,html_message=html_message)   #message sent 
     
 mailsender()

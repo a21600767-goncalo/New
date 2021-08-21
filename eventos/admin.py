@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from .models import  Projeto, Videos, Evento2, Imagens
+from .models import  Projeto, Videos, Evento2, Imagens, agendamento
 # Register your models here.
+
+class agendamentoAdmin(admin.StackedInline):
+    model = agendamento
 
 class ImagensAdmin(admin.StackedInline):
     model = Imagens
@@ -31,6 +34,7 @@ class VideosAdmin(admin.ModelAdmin):
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Videos, VideosAdmin)
 admin.site.register(Imagens)
+admin.site.register(agendamento)
 admin.site.register(Evento2, Evento2Admin)
 
 
