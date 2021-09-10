@@ -1,0 +1,84 @@
+.u-section-1 {
+  background-image: url("canvas/Canvas3.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 100vh;
+  color: black;
+  text-align: center;
+}
+
+.u-section-1 .u-text-1 {
+  animation-duration: 1000ms;
+  background-image: none;
+  font-weight: 700;
+  width: 1000px;
+  margin: 150px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+  width: 1000px;
+  margin: 47px auto 0;
+}
+
+.u-section-1 .u-text-3 {
+  width: 1000px;
+  margin: 106px auto 0;
+}
+
+.u-section-1 .u-text-4 {
+  width: 255px;
+  margin: 74px auto 0;
+}
+
+.u-section-1 .u-text-5 {
+  width: 255px;
+  margin: 13px auto 60px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 {
+    background-size: 90%;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-weight: normal;
+  }
+
+  .u-section-1 .u-text-4 {
+    font-weight: normal;
+  }
+
+  .u-section-1 .u-text-5 {
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-text-2 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-text-3 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-2 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-3 {
+    width: 340px;
+  }
+}

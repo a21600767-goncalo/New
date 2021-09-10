@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 {% load static %}
 
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -29,54 +30,60 @@
 
 <body>
 
-  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">Arabesco</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Eventos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Artistas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Historia.html">História</a>
-          </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="#">Form</a>
-          </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="#">Livro de Honra</a>
-          </li>
-        </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'eventos_new' %}">Eventos
+          <span class="sr-only">(current)</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'membros' %}">Membros</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'historia' %}">História</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'Projetos' %}">Projectos</a>
+        </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registo' %}">Sign In</a>
+        </li>
+      </ul>
       </div>
     </div>
   </nav>
 
 
 <!-- Header - set the background image for the header in the line below -->
-	<header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
-		<div style="height: 200px;"></div>
+	<header class="" >
+		<div style="height: 50px;"></div>
 	</header>
 
-
-<form method="GET" action=".">
-	<div class="col-6 align-right">
-		<form class="form-inline">
-		<i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
-		<input id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
-		</form>
-	</div>
+  <div class="container">
+    <form method="GET" action=".">
+      <h2> Pesquisa de Eventos </h2>
+      <p>Preencha os campos seguintes para filtrar os resultados</p>
+      <div class="form-group row">
+        <label for="evento" class="col-2 col-form-label">Evento</label>
+        <form class="form-inline">
+          <input id="user-input" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Nome do Evento" aria-label="Nome do Evento">
+          <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+        </form>
+      </div>
+    </div>
    </form>
 	<div id="replaceable-content">
 		{% include 'eventos.html' %}
@@ -87,6 +94,7 @@
 
 {% block footer %}
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    
 {% endblock %}
 
 </body>

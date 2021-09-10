@@ -4,7 +4,7 @@
 <head>
     <meta content="width=device-width" name="viewport">
     <meta charset="utf-8">
-    <title>{{evento.projeto}}</title>
+    <title>{{i.titulo_projeto}}</title>
     <link href="{% static '/css/nicepage_evento.css' %}" media="screen" rel="stylesheet" type=text/css>
     <link href="{% static '/css/Página_evento.css' %}" media="screen" rel="stylesheet" type=text/css>
     <script class="u-script" defer="" src="{% static '/js/jquery_evento.js' %}" type="text/javascript"></script>
@@ -28,7 +28,7 @@
             </a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="{% url 'Eventos' %}">Eventos</a>
+			<a class="nav-link" href="{% url 'eventos_new' %}">Eventos</a>
 		  </li>
 		  <li class="nav-item">
 			<a class="nav-link" href="{% url 'membros' %}">Membros</a>
@@ -37,7 +37,7 @@
 			<a class="nav-link" href="{% url 'historia' %}">História</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="{% url 'projetos' %}">Projectos</a>
+			<a class="nav-link" href="{% url 'Projetos' %}">Projectos</a>
 		  </li>
 		   <li class="nav-item">
 			<a class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -50,28 +50,13 @@
 	</div>
 </nav>
 
-<section class="u-align-center u-clearfix u-section-1" id="sec-b7bd">
-    <div class="u-body" data-home-page="Página_evento.html">
-        <ul class="u-nav u-unstyled ">
-            <li class="u-nav-item">
+{% for i in projetos %}
+<h1 style="font-size:50px; text-align: center; padding-right: 5%; padding-left:5%; padding-top:30px" >{{i.titulo_projeto}}</h1>
 
-                {% for i in eventos %}
-            </li>
-            <li class="u-nav-item"><a
-                    class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                    href="Sobre.html" style="padding: 10px 20px;">{{i.titulo_projeto}}</a>
-            </li>
-            <li class="u-nav-item"><a
-                    class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                    href="Contact.html" style="padding: 10px 20px;">{{i.descricao_projeto}}</a>
-            </li>
-            <li class="u-nav-item"><a
-                    class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                    href="Página-1.html" style="padding: 10px 20px;">{{i.data_projeto}}</a>
-            </li>
-        </ul>
-        {% endfor %}
-    </div>
-</section>
+<h1 style="font-size:30px; text-align: center; padding-right: 5%; padding-left:5%">Artistas: {{i.autores}}</h1>
+
+<h1 style="font-size:20px; text-align: center; padding: 120px; padding-right: 5%; padding-left:5%">{{i.programa}}</h1>
+
+{% endfor %}
 </body>
 </html>

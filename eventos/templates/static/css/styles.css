@@ -476,7 +476,7 @@ mark,
 
 .img-fluid {
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .img-thumbnail {
@@ -3954,7 +3954,7 @@ input[type=button].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0;
 }
 .navbar .container,
 .navbar .container-fluid,
@@ -7740,19 +7740,9 @@ button.bg-dark:focus {
   padding: 3rem !important;
 }
 
-.pt-5,
-.py-5 {
-  padding-top: 3rem !important;
-}
-
 .pr-5,
 .px-5 {
   padding-right: 3rem !important;
-}
-
-.pb-5,
-.py-5 {
-  padding-bottom: 3rem !important;
 }
 
 .pl-5,
@@ -7770,7 +7760,7 @@ button.bg-dark:focus {
 }
 
 .mr-n1,
-.mx-n1 {
+.mx-n1 {'/images/1.jpg'
   margin-right: -0.25rem !important;
 }
 

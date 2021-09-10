@@ -1,0 +1,55 @@
+
+
+{% load static %}
+{% block content %}
+
+
+
+<div class="row" style="padding-left: 273px; padding-top: 40px">
+	<div class="col-md">
+		<div class="card card-body">
+
+			<h3>Resultados da pesquisa </h3>
+		</div>
+		<div class="card card-body">
+
+			<table class="table">
+				<tr>
+					<th>Titulo do Projeto</th>
+					<th>Autores</th>
+				</tr>
+
+				{% for projeto in projetos %}
+				<tr>
+					<td>
+						<ul><a href="{% url  'projetos' projeto.id_projeto %}">{{ projeto.titulo_projeto }}</a></ul>
+					</td>
+					<td>{{projeto.autores}}</td>
+					
+				</tr>
+				{% endfor %}
+
+		</div>
+
+
+		{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+

@@ -85,9 +85,9 @@
 				<th>Titulo do Projeto</th>
 				
 			</tr>
-			{% for i in eventos %}
+			{% for i in projetos %}
 			<tr>
-				<td><ul><a href="{% url  'eventos' i.id_evento %}">{{ i.titulo_evento }}</a></ul></td>
+				<td><ul><a href="{% url 'eventos' 'projetos' i.id_projeto %}">{{ i.titulo_projeto }}</a></ul></td>
 				
 			</tr>
 			{% endfor %}

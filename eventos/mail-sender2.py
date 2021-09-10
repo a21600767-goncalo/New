@@ -5,7 +5,7 @@ import sys
 import os
 import django
 
-sys.path.append('C:/Users/gonca/Arabesco_new2')
+sys.path.append('C:/Users/gonca/Arabesco_Final')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'arabesco.settings'
 django.setup()
 
@@ -44,7 +44,7 @@ def mailsender():
 
     time_today = datetime.now()                                         #actual time
 
-    time_x = time_today + timedelta(days=-16)                           #time(in days) we want to search through the list of canvas in cloud 
+    time_x = time_today + timedelta(days=-1)                           #time(in days) we want to search through the list of canvas in cloud 
 
     time2 = time_x.strftime("%Y-%m-%d")                                 #we had to format time to "YYYY-MM-DD" in order to match canvas names
 
@@ -95,11 +95,6 @@ def mailsender():
         #here we have an email body(html with string format) with a link to canvas
 
 
-    msg =MIMEText(email_body, 'html')
-    msg['Subject']= 'xpto'
-    msg['From']= email_user
-    msg['To']=", ".join(recievers)
-
     subject = 'Thank you from ******'
     message = 'text version of HTML message'
     from_email = 'goncalo_slb_matos@hotmail.com'
@@ -111,7 +106,12 @@ def mailsender():
         XYZ Team.                                           #here we have an email body(html with string format) with a link to canvas
         </pre>""".format(link= link)
 
+    msg =MIMEText(html_message, 'html')
+    msg['Subject']= 'xpto'
+    msg['From']= email_user
+    msg['To']=", ".join(recievers)
+
 
     send_mail(subject,message,from_email,to_list,fail_silently=True,html_message=html_message)   #message sent 
-    
 mailsender()
+print("Email Sent!!")

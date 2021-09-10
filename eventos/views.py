@@ -15,6 +15,9 @@ from django.forms import inlineformset_factory
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
+from .decorators import unauthenticated_user, allowed_users
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -31,7 +34,7 @@ def colaboracao(request):
     return render(request, 'Colaboração.html')
 
 def Historia(request):
-    return render(request, 'História.html')
+    return render(request, 'Historia.html')
 
 def LivroHonra(request):
     return render(request, 'Livro-De-Honra.html')
@@ -99,14 +102,54 @@ def detail_view_eventos(request,id, data):
     return render(request, 'Pagina_evento.html', {'evento': evento, 'imagens': imagens, 'eventos': eventos})
 
 def projetos(request):
-    prj= Projeto.objects.all()
-    return render(request, 'Projetos.html', {'prj':prj})
+    eventos = Evento2.objects.all()
+    projetos = Projeto.objects.all()
+    date_min_eventos = request.GET.get('date_min_eventos')
+    date_max_eventos = request.GET.get('date_max_eventos')
+    date_min_projetos = request.GET.get('date_min_projetos')
+    date_max_projetos = request.GET.get('date_max_projetos')
+
+    ctx = {}
+    xpto={}
+    url_parameter = request.GET.get("a")
+    if date_min_eventos != '' and date_min_eventos is not None:
+        eventos = eventos.filter(data_evento__gte=date_min_eventos)
+    if date_min_projetos != '' and date_min_projetos is not None: 
+        projetos = projetos.filter(data_projeto__gte=date_min_projetos)
+        
+
+    if date_max_eventos != '' and date_max_eventos is not None:
+        eventos = eventos.filter(data_evento__lt=date_max_eventos)
+    if date_max_projetos != '' and date_max_projetos is not None:
+        projetos = projetos.filter(data_projeto__lt=date_max_projetos)
+        
+    
+   
+        
+
+
+    if url_parameter:   
+
+            eventos = Evento2.objects.filter(Q(titulo_evento__icontains=url_parameter) | Q(descricao_evento__icontains=url_parameter))
+            projetos = Projeto.objects.filter(Q(titulo_projeto__icontains=url_parameter) | Q(programa__icontains=url_parameter) | Q(notas__icontains=url_parameter))
+    
+
+
+    ctx={"eventos":eventos, "projetos":projetos}
+    if request.is_ajax():
+
+        html = render_to_string(
+            template_name="prj.hmtl", context={"eventos":eventos, "projetos":projetos}
+            )
+        data_dict = {"html_from_view": html}
+        return JsonResponse(data=data_dict, safe=False)
+    ctx={"eventos":eventos, "projetos":projetos}
+    return render(request, "Projetos.html", context=ctx)
 
 def detail_view_projetos(request, id):
     projeto= get_object_or_404(Projeto, id_projeto=id)
-    eventos = Evento2.objects.filter(projeto = projeto)
     projetos = Projeto.objects.filter(id_projeto = id)
-    return render(request, 'projeto_eventos.html', {'projeto': projeto, 'eventos': eventos, 'projetos': projetos})
+    return render(request, 'Pagina_projeto.html', {'projeto': projeto, 'projetos': projetos})
 
 
 
@@ -114,7 +157,7 @@ def facebook(request):
     return render(request, 'facebook-html.html')
 
 
-
+@unauthenticated_user
 def UserRegisterView2(request):
     form = CreateUserForm()
 
@@ -130,6 +173,7 @@ def UserRegisterView2(request):
     context = {'form' : form}
     return render(request, 'registo.html', context)
 
+@unauthenticated_user
 def loginPage(request):
 
     if request.method == 'POST':
@@ -140,7 +184,7 @@ def loginPage(request):
 
         if user is not None :
             login(request, user)
-            return redirect('home') ##colocar a pagina para dar redirect
+            return redirect('home') 
         else:
             messages.info(request,'Username OU Password incorreta ')
 
@@ -150,3 +194,11 @@ def loginPage(request):
 def logOutUser(request):
     logout(request)
     return redirect('login')
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def detail_view_canvas(request,id, data):
+    evento= get_object_or_404(Evento2, id_evento=id, data_evento=data)
+    eventos = Evento2.objects.filter(id_evento= id, data_evento=data)
+    return render(request, 'Canvas.html', {'evento': evento, 'eventos': eventos})

@@ -1,0 +1,103 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+
+
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Titulo do Evento, Artistas">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Canvas</title>
+    <link rel="stylesheet"  type=text/css href="{% static '/css/nicepage.css'%}" media="screen">
+    <link rel="stylesheet"  type=text/css href="{% static '/css/Canvas.css'%}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js'%}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js'%}" defer=""></script>
+    <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.svg.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.svg.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+
+
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"url": "index.html"
+}</script>
+    <meta property="og:title" content="Contact">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#478ac9">
+    <link rel="canonical" href="index.html">
+    <meta property="og:url" content="index.html">
+  </head>
+  <body class="u-body">
+    <div id="xpto">  
+      <section class="u-clearfix u-image u-shading u-section-1" id="sec-522e" data-image-width="1280" data-image-height="853">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <h1 class="u-align-center u-text u-text-1">{{evento.titulo_evento}}</h1>
+          <h2 class="u-align-center u-text u-text-2">{{evento.artistas}}</h2>
+          <h3 class="u-align-center u-text u-text-3">{{evento.descricao_evento}}</h3>
+          <h4 class="u-text u-text-4">{{evento.local}}<br>
+          </h4>
+          <h4 class="u-text u-text-5">{{evento.data_evento}}</h4>
+        </div>
+      </section>
+    </div> 
+    
+  </body>
+</html>
+
+
+
+<script>
+
+
+  function saveCanvas(){
+ 
+       var str= String(window.location.href)
+       var id= str[str.length- 2];
+       var splits = str.split(/([0-9]+)/);
+       var id = splits[13] + splits[14] + splits[15] + splits[16] + splits[17]
+       //var id = splits[3] + splits[4] + splits[5] + splits[6] + splits[7] // se estiver a correr em heroku
+       
+     html2canvas(document.querySelector("#xpto")).then(canvas => {
+       var image = canvas.toDataURL("image/png");
+       var image_png = saveAs(canvas.toDataURL(), 'evento-canvas'+id);
+ 
+     });
+   }
+       function saveAs(uri, filename) {
+         var link = document.createElement('a');
+         if (typeof link.download === 'string') {
+           link.href = uri;
+           link.download = filename;
+ 
+           //Firefox requires the link to be in the body
+           document.body.appendChild(link);
+           //simulate click
+           link.click();
+           //remove the link when done
+           document.body.removeChild(link);
+         } else {
+           window.open(uri);
+         }
+       }
+       saveAs()
+       saveCanvas()
+ </script>
+ 

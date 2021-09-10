@@ -1,5 +1,6 @@
+
 /*!
- * html2canvas 1.1.2 <https://html2canvas.hertzen.com>
+ * html2canvas 1.1.1 <https://html2canvas.hertzen.com>
  * Copyright (c) 2021 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
  */
@@ -6314,7 +6315,7 @@
                                 _this.ctx.shadowOffsetX = textShadow.offsetX.number * _this.options.scale;
                                 _this.ctx.shadowOffsetY = textShadow.offsetY.number * _this.options.scale;
                                 _this.ctx.shadowBlur = textShadow.blur.number;
-                                _this.renderTextWithLetterSpacing(text, styles.letterSpacing, baseline);
+                                _this.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
                             });
                             _this.ctx.shadowColor = '';
                             _this.ctx.shadowOffsetX = 0;
@@ -7154,15 +7155,11 @@
     if (typeof window !== 'undefined') {
         CacheStorage.setContext(window);
     }
-    var instanceCount = 1;
     var renderElement = function (element, opts) { return __awaiter(void 0, void 0, void 0, function () {
         var ownerDocument, defaultView, instanceName, _a, width, height, left, top, defaultResourceOptions, resourceOptions, defaultOptions, options, windowBounds, documentCloner, clonedElement, container, documentBackgroundColor, bodyBackgroundColor, bgColor, defaultBackgroundColor, backgroundColor, renderOptions, canvas, renderer, root, renderer;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    if (typeof element !== 'object') {
-                        return [2 /*return*/, Promise.reject('Invalid element provided as first argument')];
-                    }
                     ownerDocument = element.ownerDocument;
                     if (!ownerDocument) {
                         throw new Error("Element is not attached to a Document");
@@ -7171,7 +7168,7 @@
                     if (!defaultView) {
                         throw new Error("Document is not attached to a Window");
                     }
-                    instanceName = "#" + instanceCount++;
+                    instanceName = (Math.round(Math.random() * 1000) + Date.now()).toString(16);
                     _a = isBodyElement(element) || isHTMLElement(element) ? parseDocumentSize(ownerDocument) : parseBounds(element), width = _a.width, height = _a.height, left = _a.left, top = _a.top;
                     defaultResourceOptions = {
                         allowTaint: false,
