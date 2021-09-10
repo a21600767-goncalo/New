@@ -44,7 +44,7 @@ def mailsender():
 
     time_today = datetime.now()                                         #actual time
 
-    time_x = time_today + timedelta(days=-1)                           #time(in days) we want to search through the list of canvas in cloud 
+    time_x = time_today + timedelta(days=-1)                            #time(in days) we want to search through the list of canvas in cloud 
 
     time2 = time_x.strftime("%Y-%m-%d")                                 #we had to format time to "YYYY-MM-DD" in order to match canvas names
 
@@ -100,11 +100,11 @@ def mailsender():
     from_email = 'goncalo_slb_matos@hotmail.com'
     to_list = recievers
     html_message= """<pre> 
-        Congratulations! We've successfully created account.
-        Go to the page: <a href={link}>click here</a>
-        Thanks,
-        XYZ Team.                                           #here we have an email body(html with string format) with a link to canvas
+        Para ver o nosso novo evento clique aqui
+        <a href={link}>click here</a>
         </pre>""".format(link= link)
+                                                #here we have an email body(html with string format) with a link to canvas
+
 
     msg =MIMEText(html_message, 'html')
     msg['Subject']= 'xpto'

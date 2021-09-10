@@ -191,9 +191,6 @@ def loginPage(request):
     context = {}
     return render(request, 'login.html', context)
 
-def logOutUser(request):
-    logout(request)
-    return redirect('login')
 
 
 @login_required(login_url='login')
@@ -202,3 +199,11 @@ def detail_view_canvas(request,id, data):
     evento= get_object_or_404(Evento2, id_evento=id, data_evento=data)
     eventos = Evento2.objects.filter(id_evento= id, data_evento=data)
     return render(request, 'Canvas.html', {'evento': evento, 'eventos': eventos})
+
+
+
+
+
+def logOutUser(request):
+    logout(request)
+    return redirect('login')    
