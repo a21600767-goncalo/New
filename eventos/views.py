@@ -207,3 +207,8 @@ def detail_view_canvas(request,id, data):
 def logOutUser(request):
     logout(request)
     return redirect('login')    
+
+
+@allowed_users(allowed_roles=['admin'])
+def admin(request):
+    return redirect('admin')

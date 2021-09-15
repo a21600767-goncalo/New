@@ -16,4 +16,5 @@ urlpatterns = [
     path("registo/", views.UserRegisterView2, name="registo"),
     path("login/", views.loginPage, name="login"),
     path("canvas/<id>/<data>/", views.detail_view_canvas, name= "canvas"),
+    path("admin/", views.admin, name= "admin"),
 ]
